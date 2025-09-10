@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: blue;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.bg-merah {
+    background-color: red;
+}
+
+.text-besar {
+    font-size: 20px;
+}
+
+.p-3 {
+    padding: 80px;
+}

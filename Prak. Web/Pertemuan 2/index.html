@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js DOM</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+    
+    <button id="color">Light or Night</button>
+    <div id="container"></div>
+
+    <h1>prak IF-F</h1>
+
+    <div class="bg-merah p-3">
+        <h2 class="text-besar">Klik Saya</h2>
+    </div>
+
+    
+    <script>
+        console.log('ini script'); //untuk ngeluarin di console web secara script
+
+        document.title = "ubah title";
+
+        const body = document.body;
+
+        body.style.backgroundColor = "white";
+        body.style.color = "black";
+
+        body.append("hello dari js")
+
+        const judul = document.createElement("h1");
+        judul.innerText = "ini Judul"
+
+        const btn = document.getElementById('color');
+        btn.addEventListener('click', function() {
+            if (body.style.backgroundColor == "white") {
+                body.style.backgroundColor = "black";
+                body.style.color = "white";
+            } else {
+                body.style.backgroundColor   = "white";
+                body.style.color = "black";
+            }
+        })
+
+        body.append(judul);
+    </script>
+
+    <!-- <script src="script.js"> //secara eksternal
+
+    </script> -->
+</body>
+</html>
