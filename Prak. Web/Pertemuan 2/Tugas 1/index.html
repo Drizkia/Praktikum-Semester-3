@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speda</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="inijs.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <div class="Logo">
+            <a href="index.html"><img src="Logo.png" alt="Logo">Speda</a>
+        </div>
+        <a href="index.html">Home</a>
+        <a href="input.html">Tambah Mahasiswa</a>
+    </div>
+
+    <div class="container">
+        <div class="home">
+            <h1>Daftar Mahasiswa</h1>
+            <div class="search-box">
+                <input type="text" name="Cari" id="Search" placeholder="Cari Mahasiswa">
+                <button type="submit">Cari</button>
+            </div>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>NIM</th>
+                <th>Nama</th>
+                <th>Jenis Kelamin</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>123230139</td>
+                <td>Farhannivta Ramadhana</td>
+                <td>Laki Laki</td>
+            <td>
+                <div class="tombol">
+                    <a href="#" class="update" onclick="updateStudent('123230139', this)">Update</a>
+                    <a href="#" class="delete" onclick="deleteStudent('123230139', this)">Delete</a>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>2</td>
+            <td>123230131</td>
+            <td>Vincentius Ariel</td>
+            <td>Laki Laki</td>
+            <td>
+                <div class="tombol">
+                    <a href="#" class="update" onclick="updateStudent('123230140', this)">Update</a>
+                    <a href="#" class="delete" onclick="deleteStudent('123230140', this)">Delete</a>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>3</td>
+            <td>123230111</td>
+            <td>Puan Maharani</td>
+            <td>Perempuan</td>
+            <td>
+                <div class="tombol">
+                    <a href="#" class="update" onclick="updateStudent('123230141', this)">Update</a>
+                    <a href="#" class="delete" onclick="deleteStudent('123230141', this)">Delete</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

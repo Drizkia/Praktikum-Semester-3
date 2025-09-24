@@ -1,0 +1,153 @@
+* {
+    padding: 0;
+    margin: 0;
+    color: black;
+    border-radius: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+    background-color: white;
+}
+
+.navbar {
+    background-color: #2B2F33;
+    height: 60px;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    font-size: 15px;
+    color: grey;
+}
+
+a:hover {
+    color: white;
+}
+
+.Logo {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.Logo a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    font-size: 20px;
+    color: white;
+}
+
+.Logo a img {
+    width: 40px;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding-left: 255px;
+}
+
+.home input {
+    border: 2px solid grey;
+    border-radius: 3px;
+    width: 700px;
+}
+
+#sub {
+    width: 70px;
+    color: grey;
+    background-color: white;
+    border: 2px solid grey;
+}
+
+.home h1 {
+    display: flex;
+    padding-left: 240px;
+    margin: 20px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    margin-left: 260px;
+}
+
+.search-box input {
+    padding: 8px 250px 9px 10px;
+    border: 1.2px solid #bdc3c7;
+    border-radius: 4px 0px 0px 4px;
+}
+
+.search-box button {
+    padding: 8px 15px;
+    background-color: white;
+    color: grey;
+    border: 1.5px solid grey;
+    border-radius: 0px 4px 4px 0px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+td {
+    color : white;
+}
+
+thead {
+    background-color: #2B2F33;  
+    align-items: center;
+}
+
+thead th {
+    color: white;
+    text-align: center;
+}
+
+table {
+    width: calc(100% - 520px);
+    border-collapse: collapse;
+    background-color: #2B2F33;
+    color: white;
+    margin: 20px 260px 0 260px;
+    padding: 10px;
+    font-size: 15px;
+}
+
+table, th, td {
+    border: 1.2px solid grey;
+}
+
+th, td {
+    padding: 6px;
+    text-align: justify;
+}
+
+.update {
+    padding: 2px 6px;
+    border: 1.2px solid rgb(38, 89, 255);
+    border-radius: 4px;
+    font-size: 14px;
+    color: white;
+    background-color: rgb(38, 89, 255);
+}
+
+.delete {
+    padding: 2px 6px;
+    border: 1.2px solid rgb(253, 8, 8);
+    border-radius: 4px;
+    font-size: 14px;
+    color: white;
+    background-color: rgb(253, 8, 8);
+}
+
+.tombol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
