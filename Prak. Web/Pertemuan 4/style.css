@@ -6,3 +6,58 @@
 body {
     font-family: 'Source Sans 3', sans-serif;
 }
+
+header {
+    background-color: #59316b;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+    gap: 16px;
+}
+
+.btn-yellow {
+    background-color: #FFBF00;
+    color: #111;
+    padding: 6px 8px;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 4px;
+}
+
+.kiri {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.btn-secondary {
+    border: 1px solid white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-decoration: none;
+    display: flex;
+}
+
+.kanan {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-secondary:hover {
+    background-color: white;
+    color: #59316b;
+}
