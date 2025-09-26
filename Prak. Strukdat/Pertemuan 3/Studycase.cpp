@@ -2,11 +2,12 @@
 using namespace std;
 
 struct Node {
-    int info;
+    int nim;
+    string nama;
     Node *next;
 };
 
-Node *head, *tail, *cur, *del, *newnode, *maha;
+Node *head, *tail, *cur, *del, *newnode;
 
 void in() {
     head = NULL;
@@ -14,113 +15,89 @@ void in() {
 }
 
 void sisipTengah(int ni, string nm) {
-
     newnode = new Node();
-    newnode->info = ni;
-    newnode->info = nm;
+    newnode->nim = ni;
+    newnode->nama = nm;
     newnode->next = NULL;
 
-    cur = head;
-    if (head == NULL) {
+    if (head == NULL || ni < head->nim) {
+        newnode->next = head;
         head = newnode;
-        tail = newnode;
+        if (tail == NULL) tail = newnode;
     } else {
-        while (cur->next != NULL && cur->next->info < maha->mahasiswa.nim) {
-            cur = cur->next; 
+        cur = head;
+        while (cur->next != NULL && cur->next->nim < ni) {
+            cur = cur->next;
         }
+        newnode->next = cur->next;
+        cur->next = newnode;
+        if (newnode->next == NULL) tail = newnode;
     }
-    
-    newnode->next = cur->next;
-    cur->next = newnode;
 }
 
 void masuk() {
-    char Z;
     int ni;
     string nm;
     cout << "NIM : ";
-        cin >> ni;
+    cin >> ni;
     cout << "Nama : ";
     cin.ignore();
-        getline(cin, nm);
-    sisipTengah(ni, nm)
+    getline(cin, nm);
+    sisipTengah(ni, nm);
 }
 
 void display() {
     cur = head;
     while (cur != NULL) {
-        cout << cur->info << " | ";
+        cout << cur->nim << " - " << cur->nama << endl;
         cur = cur->next;
     }
 }
 
 void hapusTengah(int H) {
     cur = head;
-    while (cur->next != NULL && cur->next->info != H) {
+    if (head != NULL && head->nim == H) {
+        del = head;
+        head = head->next;
+        delete del;
+        return;
+    }
+    while (cur->next != NULL && cur->next->nim != H) {
         cur = cur->next;
     }
-    
     if (cur->next == NULL) {
-        cout << "Tidak ada nilai " << H << " di dalam data" << endl;
+        cout << "Tidak ada NIM " << H << endl;
     } else {
         del = cur->next;
         cur->next = del->next;
-        if (del == tail) {
-            tail = cur;
-        }
+        if (del == tail) tail = cur;
         delete del;
     }
-    
 }
 
 void Cari(int H) {
     cur = head;
-    while (cur->next != NULL && cur->next->info != H) {
+    while (cur != NULL && cur->nim != H) {
         cur = cur->next;
     }
-    
-    if (cur->next == NULL) {
-        cout << "Tidak ada nilai " << H << " di dalam data" << endl;
+    if (cur == NULL) {
+        cout << "Tidak ada NIM " << H << endl;
     } else {
-        cout << cur << endl;
+        cout << "Ditemukan: " << cur->nim << " - " << cur->nama << endl;
     }
-    
 }
 
-int main(){
+int main() {
     in();
     int X, Y;
-do {
-    cout << "1. Tambah" << endl;
-    cout << "2. Hapus" << endl;
-    cout << "3. Baca" << endl;
-    cout << "4. Cari" << endl;
-    cout << "5. out" << endl;
-    cout << "Masuk: ";
-    cin >> X;
-
-    switch (X) {
-    case 1:
-        masuk();
-        break;
-    
-    case 2:
-        cout << "brp:";
-            cin >> Y;
-            hapusTengah(Y);
-        break;
-    
-    case 3:
-        display();
-        break;
-    
-    case 4:
-        /* code */
-        break;
-
-    default:
-        break;
-    }
-cin.ignore();
-} while (X != 5);
+    do {
+        cout << "1. Tambah\n2. Hapus\n3. Baca\n4. Cari\n5. out\nMasuk: ";
+        cin >> X;
+        switch (X) {
+        case 1: masuk(); break;
+        case 2: cout << "NIM yang dihapus: "; cin >> Y; hapusTengah(Y); break;
+        case 3: display(); break;
+        case 4: cout << "NIM yang dicari: "; cin >> Y; Cari(Y); break;
+        }
+    } while (X != 5);
 }
