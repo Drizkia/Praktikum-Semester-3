@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Source Sans 3", sans-serif;
+    color: white;
+    background-color: #1A1A1A;
+}
+
+section {
+    max-width: 1200px;
+    background-color: #1A1A1A;
+}
+
+.ad-bg::after{
+    background-color: #1A1A1A;
+    overflow: hidden;
+    height: 100vh;
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 450px;
+    height: 400px;
+    background: radial-gradient(
+                circle at bottom right,
+                rgba(95, 48, 248, 0.6) 0%,
+                rgba(252, 136, 103, 0.5) 70%, 
+                transparent 100%);
+    filter: blur(80px);
+    z-index: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 60px;
+    margin-top: 20px;
+}
+
+.kanan h1 {
+    font-size: 48px;
+    font-weight: bold;
+    background: linear-gradient(to right, #5F30F8, #FC8867);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0px;
+}
+
+.kanan p {
+    line-height: 1.6;
+    color: white;
+    max-width: 450px;
+}
+
+.kiri {
+    display: flex;
+    gap: 15px;
+}
+
+.buton {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #2D272A;
+    backdrop-filter: blur(10px);
+    border: 1px solid #2D272A;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.buton:hover {
+    background-color:  rgba(43,39,41, 0.7);
+    transform: translateY(-2px);
+}
+
+.carousel-wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 25px;
+    transition: transform 0.5s ease;
+}
+
+.testimonial-card {
+    min-width: calc(25% - 19px);
+    background: rgba(45, 55, 72, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(113, 128, 150, 0.2);
+    border-radius: 20px;
+    padding: 30px;
+    transition: all 0.3s ease;
+}
+
+.testimonial-text {
+    color: #cbd5e0;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.stars {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.star {
+    color: #f6e05e;
+    font-size: 18px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(113, 128, 150, 0.2);
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.profile-info h4 {
+    font-size: 1.1rem;
+    margin-bottom: 3px;
+    color: white;
+}
+
+.profile-info p {
+    color: #a0aec0;
+    font-size: 0.85rem;
+}
