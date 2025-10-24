@@ -1,69 +1,38 @@
-// Data testimonial
 const testimonials = [
     {
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quid quis volutpat ullamcorper quis duis nam massa adipiscing et commodo hendrerit. Accumsan quam quisque quam egestas sit archifento hendrerit.",
         name: "Mbahoon",
         role: "Photographer",
         rating: 5,
-        avatar: "Minion.webp"
-    },
-    {
-        text: "Amazing service! The team was very professional and delivered exactly what we needed. Highly recommended for anyone looking for quality work.",
-        name: "Sarah Johnson",
-        role: "Designer",
-        rating: 5,
-        avatar: "😃"
-    },
-    {
-        text: "Great experience working with them. Very responsive and attentive to details. Will definitely use their services again in the future!",
-        name: "John Doe",
-        role: "Developer",
-        rating: 5,
-        avatar: "🙂"
-    },
-    {
-        text: "Professional, fast, and reliable. They exceeded our expectations in every way possible. Couldn't be happier with the results!",
-        name: "Lisa Anderson",
-        role: "Marketing Manager",
-        rating: 5,
-        avatar: "😊"
-    },
-    {
-        text: "Outstanding quality and customer service. The best decision we made for our project. Highly professional team!",
-        name: "Mike Chen",
-        role: "CEO",
-        rating: 5,
-        avatar: "😎"
-    },
-    {
-        text: "Incredible attention to detail and creativity. They transformed our vision into reality perfectly. Absolutely amazing work!",
-        name: "Emma Wilson",
-        role: "Art Director",
-        rating: 5,
-        avatar: "🤩"
+        avatar: "./Minion.webp"
     }
 ];
 
-// Ambil elemen
-const track = document.getElementById('carouselTrack');
+const testikartu = [];
+for(let i = 0; i < 10; i++) {
+    testikartu.push(testimonials[0]);}
+
+const track = document.getElementById('Track');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 
-// Generate cards dari data
-testimonials.forEach(function(t) {
-    // Buat stars
+testikartu.forEach(function(t) {
     let starsHTML = '';
-    for (let i = 0; i < t.rating; i++) {
-        starsHTML += '<span class="star">★</span>';
+    const bintang = 5;
+    for (let i = 0; i < t.rating-2; i++) {
+        starsHTML += '<span class="star_isi">★</span>';
+    }
+
+    for (let i = 0; i < 2; i++) {
+        starsHTML += '<span class="star_kosong">★</span>';
     }
     
-    // Buat card
     const cardHTML = `
         <div class="testimonial-card">
             <p class="testimonial-text">${t.text}</p>
             <div class="stars">${starsHTML}</div>
             <div class="profile">
-                <div class="avatar">${t.avatar}</div>
+                <img src="${t.avatar}" alt="${t.name}" class="avatar">
                 <div class="profile-info">
                     <h4>${t.name}</h4>
                     <p>${t.role}</p>
@@ -71,96 +40,68 @@ testimonials.forEach(function(t) {
             </div>
         </div>
     `;
-    
+
     track.innerHTML += cardHTML;
 });
 
-// Variable untuk tracking posisi
-let currentPosition = 0;
+let curPost = 0;
 let cardWidth = 0;
-let cardsVisible = 4; // Berapa card yang terlihat sekaligus
-let maxPosition = 0;
+let cardsVisible = 4;
+let maxPost = 0;
 
-// Hitung ukuran dan posisi
-function calculateDimensions() {
+function calc() {
     const cards = document.querySelectorAll('.testimonial-card');
     if (cards.length > 0) {
-        cardWidth = cards[0].offsetWidth + 25; // width card + gap
-        
-        // Sesuaikan berapa card terlihat berdasarkan screen size
-        if (window.innerWidth > 1200) {
-            cardsVisible = 4;
-        } else if (window.innerWidth > 768) {
-            cardsVisible = 3;
-        } else if (window.innerWidth > 480) {
-            cardsVisible = 2;
-        } else {
-            cardsVisible = 1;
-        }
-        
-        // Maksimal posisi yang bisa di-scroll
-        maxPosition = cards.length - cardsVisible;
+        cardWidth = cards[0].offsetWidth + 25;
+        maxPost = cards.length - cardsVisible;
     }
 }
 
-// Update tampilan tombol (disabled/enabled)
 function updateButtons() {
-    // Disable prev button kalau di awal
-    if (currentPosition <= 0) {
+    if (curPost <= 0) {
         prevBtn.disabled = true;
     } else {
         prevBtn.disabled = false;
     }
     
-    // Disable next button kalau di akhir
-    if (currentPosition >= maxPosition) {
+    if (curPost >= maxPost) {
         nextBtn.disabled = true;
     } else {
         nextBtn.disabled = false;
     }
 }
 
-// Function untuk geser carousel
-function moveCarousel(direction) {
-    // direction: -1 untuk prev, 1 untuk next
-    currentPosition += direction;
+function move(direction) {
+    curPost += direction;
     
-    // Batasi posisi agar tidak keluar range
-    if (currentPosition < 0) {
-        currentPosition = 0;
+    if (curPost < 0) {
+        curPost = 0;
     }
-    if (currentPosition > maxPosition) {
-        currentPosition = maxPosition;
+    if (curPost > maxPost) {
+        curPost = maxPost;
     }
     
-    // Hitung berapa pixel harus geser
-    const moveDistance = -(currentPosition * cardWidth);
+    const distance = -(curPost * cardWidth);
     
-    // Geser track dengan transform
-    track.style.transform = `translateX(${moveDistance}px)`;
+    track.style.transform = `translateX(${distance}px)`;
     
-    // Update status tombol
     updateButtons();
 }
 
-// Event listener untuk tombol prev
 prevBtn.addEventListener('click', function() {
-    moveCarousel(-1); // Geser ke kiri
+    move(-1);
 });
 
-// Event listener untuk tombol next
 nextBtn.addEventListener('click', function() {
-    moveCarousel(1); // Geser ke kanan
+    move(1);
 });
 
-// Event listener untuk resize window
 window.addEventListener('resize', function() {
-    calculateDimensions();
-    currentPosition = 0;
+    calc();
+    curPost = 0;
     track.style.transform = 'translateX(0)';
     updateButtons();
 });
 
-// Jalankan saat halaman pertama kali load
-calculateDimensions();
+calc();
 updateButtons();
