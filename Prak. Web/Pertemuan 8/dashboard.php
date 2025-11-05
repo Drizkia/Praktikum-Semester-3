@@ -10,3 +10,5 @@
 <!-- untuk keamanan -->
 
 <a href="proses/logout_proses.php">Tombol LogOut</a>
+
+<!-- ` OR 1=1 LIMIT -- -->
