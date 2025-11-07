@@ -11,35 +11,17 @@ struct Node {
     Node *prev;
 };
 
-struct Note {
-        int lama_inap;
-        string nama;
-        int kamar;
-        int id = 0;
-        string kode;
-    Note *next;
-    Note *prev;
-};
-
 Node *head, *tail, *newnode, *temp, *del;
-Note *hd, *tl, *nw, *tmp, *dele;
 bool kamar_ada[6] = {false, true, true, true, true, true};
 int ini_id = 0;
 
 void createList() {
     head = NULL;
     tail = NULL;
-
-    hd = NULL;
-    tl = NULL;
 }
 
 bool isEmpty() {
     return head == NULL;
-}
-
-bool isEmpt() {
-    return hd == NULL;
 }
 
 bool cek_kamar(int no_kammar) {
@@ -88,28 +70,10 @@ while (temp != NULL) {
         cout << "Lama Inap : " << temp->lama_inap << endl;
         cout << "No Kamar : " << temp->kamar << endl;
 
-        del = temp;
-
         cout << "Apakah ingin checkout ? [y/n] ";
             cin >> P;
         if (P == 'y' || P == 'Y') {
             cout << "[ Terima kasih atas kunjungan :3 ]" << endl;
-                if (del == head && del == tail) {
-                    head = NULL;
-                    tail = NULL;
-                } else if (del == head) {
-                    head = head->next;
-                    head->prev = NULL;
-                } else if (del == tail) {
-                    tail = tail->prev;
-                    tail->next = NULL;
-                } else {
-                    del->prev->next = del->next;
-                    del->next->prev = del->prev;
-                }
-            
-            delete(del);
-
                 kamar_ada[temp->kamar] = true;
         } else {
             cout << "Anda Tidak Jadi Checkout" << endl;
@@ -140,11 +104,8 @@ void input() {
     
     for (int j = 1; j <= dat; j++) {
         newnode = new Node();
-        nw = new Note();
         newnode->next = NULL;
-        nw->next = NULL;
         newnode->prev = NULL;
-        nw->prev = NULL;
 
         cout << "Data ke-" << j << endl;
         cout << "Nama           : ";
@@ -176,11 +137,11 @@ void input() {
             tampil_kamar();
             cout << endl;
 
-            nw->id = newnode->id;
-            nw->nama = newnode->nama;
-            nw->kamar = newnode->kamar;
-            nw->kode = newnode->kode;
-            nw->lama_inap = newnode->lama_inap;
+            newnode->id = newnode->id;
+            newnode->nama = newnode->nama;
+            newnode->kamar = newnode->kamar;
+            newnode->kode = newnode->kode;
+            newnode->lama_inap = newnode->lama_inap;
 
 
             if (isEmpty()) {
@@ -190,15 +151,6 @@ void input() {
                 tail->next = newnode;
                 newnode->prev = tail;
                 tail = newnode;
-            }
-
-            if (isEmpt()) {
-                hd = nw;
-                tl = nw;
-            } else {
-                tl->next = nw;
-                nw->prev = tl;
-                tl = nw;
             }
         }
     }
@@ -213,27 +165,6 @@ void input() {
 }
 
 void Cetak_Laporan() {
-    cout << "==================================" << endl; 
-    cout << "|          MENU LAPORAN          |" << endl; 
-    cout << "==================================" << endl;
-
-    if (isEmpt()) {
-        cout << "Tidak ada Data" << endl << endl;
-        return;
-    } else {
-        tmp = hd;
-        while (tmp != NULL) {
-            cout << "Id : " << tmp->id << endl;
-            cout << "Nama : " << tmp->nama << endl;
-            cout << "Lama Inap : " << tmp->lama_inap << endl;
-            cout << "No Kamar : " << tmp->kamar << endl;
-                tmp = tmp->next;
-        }
-    cout << endl;
-    }
-}
-
-void Cetak_Laporan_Aktif() {
     cout << "==================================" << endl; 
     cout << "|          MENU LAPORAN          |" << endl; 
     cout << "==================================" << endl;
@@ -273,10 +204,10 @@ void hapus_data() {
         cin >> code;
     cout << endl;
 
-    tmp = hd;
-    while (tmp != NULL) {
-        if (code == tmp->kode) {
-            dele = tmp;
+    temp = head;
+    while (temp != NULL) {
+        if (code == temp->kode) {
+            del = temp;
 
             temp = head;
             while (temp != NULL) {
@@ -294,28 +225,28 @@ void hapus_data() {
                 cin >> P;
             if (P == 'y' || P == 'Y') {
                 cout << "[ Node ditemukan dan telah dihapus ]" << endl << endl;
-                    if (dele == hd && dele == tl) {
-                        hd = NULL;
-                        tl = NULL;
-                    } else if (dele == hd) {
-                        hd = hd->next;
-                        hd->prev = NULL;
-                    } else if (dele == tl) {
-                        tl = tl->prev;
-                        tl->next = NULL;
+                    if (del == head && del == tail) {
+                        head = NULL;
+                        tail = NULL;
+                    } else if (del == head) {
+                        head = head->next;
+                        head->prev = NULL;
+                    } else if (del == tail) {
+                        tail = tail->prev;
+                        tail->next = NULL;
                     } else {
-                        dele->prev->next = dele->next;
-                        dele->next->prev = dele->prev;
+                        del->prev->next = del->next;
+                        del->next->prev = del->prev;
                     }
 
-                delete(dele);
+                delete(del);
 
             } else {
                 cout << "Anda Tidak Ada Data" << endl;
                 return;
             }        
         }
-        tmp = tmp->next;
+        temp = temp->next;
     }
 }
 
@@ -328,9 +259,8 @@ int main() {
         cout << "==================================" << endl;
         cout << "1. Pesan Kamar" << endl;
         cout << "2. Checkout Kamar" << endl;
-        cout << "3. Cetak Laporan Keseluruhan" << endl;
-        cout << "4. Cetak Laporan Pengunjung Aktif" << endl;
-        cout << "5. Hapus Data Laporan" << endl << endl;
+        cout << "3. Cetak Laporan" << endl;
+        cout << "4. Hapus Data Laporan" << endl << endl;
         cout << "0. Keluar" << endl;
         cout << "----------------------------------" << endl;
         cout << "Pilih menu : ";
@@ -353,11 +283,6 @@ int main() {
             break;
 
         case 4:
-        cout << endl;
-            Cetak_Laporan_Aktif();
-            break;
-        
-        case 5:
         cout << endl;
             hapus_data();
             break;
