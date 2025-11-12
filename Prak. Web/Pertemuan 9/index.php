@@ -46,7 +46,7 @@
 
         //! Bagian masuk ke dbnya
         $query = "INSERT INTO file (gambar_url) VALUES (?)";
-+        $stmt = $konek->prepare($query);
+        $stmt = $konek->prepare($query);
         $stmt->bind_param("s", $namaFileBaru);
         $hasil = $stmt->execute();
 
@@ -76,5 +76,23 @@
         <input type="file" name="uploadFile" accept="image/*">
         <button type="submit">Upload Gambar</button>
     </form>
+    <div>
+        <?php
+            $konek = new mysqli('localhost', 'root', '', 'upload_file');
+
+            $stmt = $konek->prepare("SELECT * FROM file");
+            $stmt->execute();
+            $result = $stmt->get_result();
+        ?>
+
+        <h2>Hasil gambar</h2>
+        <?php while ($data = mysqli_fetch_assoc($result)) :  ?>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px; border: 1px solid black; padding: 10px; margin-bottom: 10px;">
+            <p><?= $data['id'] ?></p>
+            <p>-</p>
+            <img src="storage/<?= $data['gambar_url'] ?>" style="width: 100px;">
+            </div>
+        <?php endwhile; ?>
+    </div>
 </body>
 </html>
