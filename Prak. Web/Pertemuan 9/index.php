@@ -41,6 +41,21 @@
             "storage/" . $namaFileBaru //* arah gambar kemana
         );
 
+        //! menghubungkan dengan koneksi
+        $konek = new mysqli('localhost', 'root', '', 'upload_file');
+
+        //! Bagian masuk ke dbnya
+        $query = "INSERT INTO file (gambar_url) VALUES (?)";
++        $stmt = $konek->prepare($query);
+        $stmt->bind_param("s", $namaFileBaru);
+        $hasil = $stmt->execute();
+
+        if ($hasil) {
+        echo "berhasil upload ke db <br>";
+        } else {
+        echo "<script>alert('Gagal Update Profile')</script>";
+        }
+
         //! Allert wajib
         echo "File Berhasil Di Upload";
         exit();
